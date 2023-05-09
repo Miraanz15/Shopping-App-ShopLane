@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Miraan Ejaz -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1ad3ca471e.js" crossorigin="anonymous"></script>
+    <title>Final Project: JavaScript by Miraan Ejaz</title>
+  </head>
+
+  <body style="margin: 0;">
+    <!-- Header -->
+    <header>
+      <div id="head"></div>
+    </header>
+    <!-- Header -->
+
+    <!-- Carousel -->
+    
+    <div class="multiple-items d1">
+      <div><a href="https://www2.hm.com/en_in/index.html" target="_blank"><img class = "carouselImage" src="carousel1.png"></a></div>
+      <div><a href="https://www2.hm.com/en_in/index.html" target="_blank"><img class = "carouselImage" src="carousel2.png"></a></div>
+      <div><a href="https://www2.hm.com/en_in/index.html" target="_blank"><img class = "carouselImage" src="carousel3.png"></a></div>
+      <div><a href="https://www2.hm.com/en_in/index.html" target="_blank"><img class = "carouselImage" src="carousel4.png"></a></div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+  
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.multiple-items').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          dots: true,
+          infinite: true,
+          speed: 500,
+          // fade: true,
+          cssEase: 'linear'
+        });
+      });
+    </script>
+    <!-- Carousel -->
+
+    <section>   <!--Clothing Section-->
+      <h1 id="clothesHeading">Clothing for Men and Women</h1>
+      <div id="clothingSection"></div>
+    </section> 
+
+    <section>    <!--Accessories Section-->
+      <h1 id="accessHeading">Accessories for Men and Women</h1>
+      <div id="accessoriesSection"></div>
+    </section>
+
+     <!-- Footer Section Starts-->
+    <footer>   
+      <div id="baseFooter"></div>   
+    </footer>
+     <!-- Footer Section Ends-->
+
+    <script type="text/javascript" src="/javascript.js"></script>
+
+
+    
+  </body>
+</html>
