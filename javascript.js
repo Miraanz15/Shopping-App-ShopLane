@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var product = data[i];
 
         var card = document.createElement("a");
-        card.href = "http://127.0.0.1:5500/productDetails.html?value="+ product.id + "&totalQty="+ totalQty;
+        card.href = "http://127.0.0.1:5500/productDetails.html?value="+ product.id;
         card.classList.add("card");
         let varr = product.id;
         card.setAttribute('id', varr);
