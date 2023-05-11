@@ -114,7 +114,7 @@ getData();  // function calling the API
   head.append(compName, shoppingHeader, write, cartParent, profileIcon);
 
   /* Cart quantity */
-  var totalQty = 0;
+  var totalQty = 1;
   const elementVar = document.getElementsByClassName("badge");
   let index = 0;
   while (index < elementVar.length) {
