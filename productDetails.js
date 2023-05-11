@@ -2,9 +2,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
      const queryParams = new URLSearchParams(location.search);  //Getting the id of card from Home Page
      const value = queryParams.get("value");
-     let totalQty = queryParams.get("totalQty");    //Total Cart Quantity
+
+     /* Getting cart quantity from local storage */
+     let cartObjFromLocal = localStorage.getItem('totalQty');
+     let cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
+     let totalQty = cartObjFromLocalParsed.cart;   //Total Cart Quantity
+     /* Getting cart quantity from local storage Ends*/
     
-     console.log("Item Id selected =" + value);
+     console.log("Item Id selected = " + value);
      console.log("Total Cart Quantity at present = " + totalQty);
 
    
@@ -311,6 +316,12 @@ document.addEventListener("DOMContentLoaded", function(){
     
     /*Footer Ends */
    
+
+    /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage */
+      
+
+
+    /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage Ends*/
    
    
  });  // End of DOMContentLoaded Event Listener

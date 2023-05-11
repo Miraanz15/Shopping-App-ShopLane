@@ -1,6 +1,22 @@
 document.addEventListener("DOMContentLoaded", function(){
   
-  var totalQty = 0;
+ /*Creating Cart quantity object and storing in local storage */
+  let cartObj = {
+    cart: '0'
+  };
+  var cartObjStr = JSON.stringify(cartObj);
+  localStorage.setItem('totalQty', cartObjStr);
+
+ /*Creating Cart quantity object and storing in local storage Ends*/
+
+/* Getting cart quantity from local storage */
+ var cartObjFromLocal = localStorage.getItem('totalQty');
+ var cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
+ var totalQty = cartObjFromLocalParsed.cart;
+/* Getting cart quantity from local storage Ends*/
+
+
+
 
   async function getData() {
     try {
@@ -8,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const data = await response.json();
        // storing JSON data in local storage
        const jsonData = JSON.stringify(data);   // convert JSON data to a string
-       localStorage.setItem('apiData', jsonData);   // store the string in local storage
+       localStorage.setItem('shopLaneAppData', jsonData);   // store the string in local storage
        console.log("API Data stored in Local Storage");
 
        var clothingSection = document.getElementById("clothingSection");
@@ -60,6 +76,21 @@ document.addEventListener("DOMContentLoaded", function(){
 }
   
 getData();  // function calling the API 
+
+/* Adding extra key-value pair for quantity of each item added to cart */
+var arrayStr = localStorage.getItem('shopLaneAppData');
+var arrayObj = JSON.parse(arrayStr);
+
+arrayObj.forEach(function(obj) {
+  // Add new key-value pair to each object
+  obj.quantity = '0';
+});
+
+var updatedArrayStr = JSON.stringify(arrayObj);
+localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the updated JSON back to local storage
+
+/* Adding extra key-value pair for quantity of each item added to cart Ends*/
+
 
  /* Header starts*/
   var head = document.getElementById("head");
