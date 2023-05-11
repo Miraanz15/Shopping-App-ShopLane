@@ -2,8 +2,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
      const queryParams = new URLSearchParams(location.search);  //Getting the id of card from Home Page
      const value = queryParams.get("value");
+     let totalQty = queryParams.get("totalQty");    //Total Cart Quantity
     
-     console.log(value);
+     console.log("Item Id selected =" + value);
+     console.log("Total Cart Quantity at present = " + totalQty);
+
+   
  
    async function getData() {
      try {
@@ -155,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function(){
     head.append(compName, shoppingHeader, write, cartParent, profileIcon);
   
     /* Cart quantity */
-    var totalQty = 0;
+    // var totalQty = 0;  -> declared above
     const elementVar = document.getElementsByClassName("badge");
     let index = 0;
     while (index < elementVar.length) {

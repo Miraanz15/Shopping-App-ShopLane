@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
+  
+  var totalQty = 0;
 
   async function getData() {
     try {
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var product = data[i];
 
         var card = document.createElement("a");
-        card.href = "http://127.0.0.1:5500/productDetails.html?value="+ product.id;
+        card.href = "http://127.0.0.1:5500/productDetails.html?value="+ product.id + "&totalQty="+ totalQty;
         card.classList.add("card");
         let varr = product.id;
         card.setAttribute('id', varr);
@@ -114,7 +116,7 @@ getData();  // function calling the API
   head.append(compName, shoppingHeader, write, cartParent, profileIcon);
 
   /* Cart quantity */
-  var totalQty = 1;
+  // var totalQty = 0;   -> declared above
   const elementVar = document.getElementsByClassName("badge");
   let index = 0;
   while (index < elementVar.length) {
