@@ -175,7 +175,7 @@ border-radius: 50%;
   letter-spacing: 0px;
   font-weight: 500;
 }
-.addButton{
+#addButton{
   width: 12vw;
   height: 8vh;
   font-size: 18px;
@@ -190,7 +190,7 @@ border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 0px 5px 2px grey;
 }
-.addButton:active{
+#addButton:active{
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
@@ -297,7 +297,7 @@ margin-bottom: 12px;
       grid-template-columns: auto;
       margin: 60vh 5vw 5vh;
    }
-   .addButton{
+   #addButton{
   width: 30vw;
   height: 10vh;
   font-size: 18px;

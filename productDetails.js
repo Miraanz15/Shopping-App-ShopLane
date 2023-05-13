@@ -1,21 +1,20 @@
-document.addEventListener("DOMContentLoaded", function(){
-
-     const queryParams = new URLSearchParams(location.search);   //to get data from URL
-     const value = queryParams.get("value");              //Getting the id of card from Home Page
-
-     /* Getting cart quantity from local storage */
-     let cartObjFromLocal = localStorage.getItem('totalQty');
-     let cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
-     let totalQty = cartObjFromLocalParsed.cart;   //Total Cart Quantity
-
-     /* Getting cart quantity from local storage Ends*/
-    
-     console.log("Item Id selected = " + value);
-     console.log("Total Cart Quantity at present = " + totalQty);
-
-
    async function getData() {
      try {
+
+          const queryParams = new URLSearchParams(location.search);   //to get data from URL
+          const value = queryParams.get("value");              //Getting the id of card from Home Page
+     
+          /* Getting cart quantity from local storage */
+          let cartObjFromLocal = localStorage.getItem('totalQty');
+          let cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
+          let totalQty = cartObjFromLocalParsed.cart;   //Total Cart Quantity
+     
+          /* Getting cart quantity from local storage Ends*/
+         
+          console.log("Item Id selected = " + value);
+          console.log("Total Cart Quantity at present = " + totalQty);
+          
+          
      const response = await fetch('https://5d76bf96515d1a0014085cf9.mockapi.io/product');
      const data = await response.json();
 
@@ -85,7 +84,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
       var addButton = document.createElement("button");
            addButton.innerText = "Add to Cart";
-           addButton.classList.add("addButton");
+           addButton.id = "addButton";
+
+
 
 
       rightContainer.append(productName, productBrand, priceDiv, productDescriptionHeading, productDescription, productPreviewHeading, imgsContainer, addButton);
@@ -96,19 +97,8 @@ document.addEventListener("DOMContentLoaded", function(){
        break;
      }
      }
-     }
-   catch(error) {
-     // Handle any errors here
-     console.error(error);
-   };
- }
 
-   getData();  // function calling the API 
-
-
-
-
-    /* Header starts*/
+               /* Header starts*/
     var head = document.getElementById("head");
 
     var compName = document.createElement("a");
@@ -316,12 +306,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
     /*Footer Ends */
 
+
+
+     
+     document.addEventListener("DOMContentLoaded", function(){
+
     
     /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage */
       
-   /* let addBtn = document.getElementById('addButton');
-   
     
+   
+    /*
     function onAddButtonClick() {
      // Code to execute when the button is clicked
      var arrayStr = localStorage.getItem('shopLaneAppDataUpdated');
@@ -347,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function(){
     /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage Ends*/
 
 
+
 /* Process to update Local Storage numerical value */
     // totalQty = parseInt(totalQty);
     // totalQty += 1;
@@ -357,4 +353,16 @@ document.addEventListener("DOMContentLoaded", function(){
     /* Process to update Local Storage numerical value */
 
 
- });  // End of DOMContentLoaded Event Listener
+
+     });
+
+     }
+   catch(error) {
+     // Handle any errors here
+     console.error(error);
+   };
+ }
+
+   getData();  // function calling the API 
+
+
