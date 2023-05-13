@@ -1,32 +1,120 @@
 document.addEventListener("DOMContentLoaded", function(){
   
- /*Creating Cart quantity object and storing in local storage */
-  let cartObj = {
-    cart: '0'
-  };
-  var cartObjStr = JSON.stringify(cartObj);
-  localStorage.setItem('totalQty', cartObjStr);
-
- /*Creating Cart quantity object and storing in local storage Ends*/
-
-/* Getting cart quantity from local storage */
- var cartObjFromLocal = localStorage.getItem('totalQty');
- var cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
- var totalQty = cartObjFromLocalParsed.cart;
-/* Getting cart quantity from local storage Ends*/
-
-
+ 
+  /* If Local Storage already contains Total Cart Quantity then we continue and retrieve cart quantity from local storage to update cart value else we create Cart Quantity in local storage initially(only once else is implemented) */
+  let cartObjFromLocalValid = localStorage.getItem('totalQty') !== null; //Boolean to check if local storage contains total cart quantity object(key)
+  if(!cartObjFromLocalValid){
+    let cartObj = {
+      cart: '0'
+    };
+    var cartObjStr = JSON.stringify(cartObj);
+    localStorage.setItem('totalQty', cartObjStr);
+  }
+ /*Cart in Local Storage Ends*/
 
 
   async function getData() {
     try {
+    /*API Call */
     const response = await fetch('https://5d76bf96515d1a0014085cf9.mockapi.io/product');
     const data = await response.json();
+    /*API Call Ends*/
+
        // storing JSON data in local storage
        const jsonData = JSON.stringify(data);   // convert JSON data to a string
        localStorage.setItem('shopLaneAppData', jsonData);   // store the string in local storage
        console.log("API Data stored in Local Storage");
 
+       /* Adding extra key-value pair for quantity of each item added to cart */
+       var arrayStr = localStorage.getItem('shopLaneAppData');
+       var arrayObj = JSON.parse(arrayStr);
+       
+       arrayObj.forEach(function(obj) {
+         // Add new key-value pair to each object
+         obj.quantity = '0';
+       });
+       
+       var updatedArrayStr = JSON.stringify(arrayObj);
+       localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the updated JSON back to local storage
+       
+       /* Adding extra key-value pair for quantity of each item added to cart Ends*/
+
+        /* Header starts*/
+        var head = document.getElementById("head");
+      
+        var compName = document.createElement("a");
+        compName.id = "compName";
+        compName.href = "#";
+        compName.innerHTML = `SHOP<span>LANE</span>`;
+        
+        var shoppingHeader = document.createElement("div");
+        shoppingHeader.id = "shoppingHeader";
+      
+        var shoppingHeaderClothing = document.createElement("a");
+        shoppingHeaderClothing.classList.add("shoppingHeaderCommon");
+        shoppingHeaderClothing.href = "#clothesHeading";
+        shoppingHeaderClothing.innerHTML = `CLOTHING`;
+      
+        var shoppingHeaderAccessories = document.createElement("a");
+        shoppingHeaderAccessories.classList.add("shoppingHeaderCommon");
+        shoppingHeaderAccessories.href = "#accessHeading"; 
+        shoppingHeaderAccessories.innerHTML = `ACCESSORIES`;
+      
+        shoppingHeader.append(shoppingHeaderClothing, shoppingHeaderAccessories);
+      
+      
+        
+        /* Header Search Starts */
+        var searchTeam = document.createElement("div");
+        searchTeam.classList.add("search-container");
+        
+        var write = document.createElement("input");
+        write.type="search";
+        write.placeholder="Search for Clothing and Accessories";
+        write.name="searchItem";
+        write.id = "searchItem";
+        /* Header Search Ends */
+      
+        var cartParent = document.createElement("a");
+        cartParent.href = "#";
+        cartParent.id = "cartParent";
+        var cartIcon = document.createElement("i");
+        cartIcon.classList.add("fa");
+        cartIcon.classList.add("fa-shopping-cart");
+        cartIcon.classList.add("badge");
+        cartIcon.id = "cartIcon";
+        cartParent.append(cartIcon);
+        
+        var profileIcon = document.createElement("i");
+        profileIcon.classList.add("fa-solid");
+        profileIcon.classList.add("fa-user");
+        profileIcon.id = "profileIcon";
+      
+      
+        head.append(compName, shoppingHeader, write, cartParent, profileIcon);
+      
+
+        /* Cart quantity */
+        /*Getting Cart value from Local Storage*/
+        let cartObjFromLocal = localStorage.getItem('totalQty');
+           let cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
+          let totalQty = cartObjFromLocalParsed.cart;   
+           totalQty = parseInt(totalQty);       //Total Cart Quantity
+        /*Getting Cart value from Local Storage Ends */
+        
+        /*Updating Cart Quantity in webpage*/   
+        const elementVar = document.getElementsByClassName("badge");
+        let index = 0;
+        while (index < elementVar.length) {
+        elementVar[index].setAttribute("value", totalQty);
+        index++;
+        } 
+        /*Updating Cart Quantity in webpage Ends*/  
+        /*Cart quantity Ends*/
+      
+        /* Header Ends*/
+      
+       /*Body Starts*/
        var clothingSection = document.getElementById("clothingSection");
        var accessoriesSection = document.getElementById("accessoriesSection");
 
@@ -68,97 +156,9 @@ document.addEventListener("DOMContentLoaded", function(){
           clothingSection.append(card);
         }
       }
-    }
-  catch(error) {
-    // Handle any errors here
-    console.error(error);
-  };
-}
-  
-getData();  // function calling the API 
+      /*Body Ends*/
 
-/* Adding extra key-value pair for quantity of each item added to cart */
-var arrayStr = localStorage.getItem('shopLaneAppData');
-var arrayObj = JSON.parse(arrayStr);
-
-arrayObj.forEach(function(obj) {
-  // Add new key-value pair to each object
-  obj.quantity = '0';
-});
-
-var updatedArrayStr = JSON.stringify(arrayObj);
-localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the updated JSON back to local storage
-
-/* Adding extra key-value pair for quantity of each item added to cart Ends*/
-
-
- /* Header starts*/
-  var head = document.getElementById("head");
-
-  var compName = document.createElement("a");
-  compName.id = "compName";
-  compName.href = "#";
-  compName.innerHTML = `SHOP<span>LANE</span>`;
-  
-  var shoppingHeader = document.createElement("div");
-  shoppingHeader.id = "shoppingHeader";
-
-  var shoppingHeaderClothing = document.createElement("a");
-  shoppingHeaderClothing.classList.add("shoppingHeaderCommon");
-  shoppingHeaderClothing.href = "#clothesHeading";
-  shoppingHeaderClothing.innerHTML = `CLOTHING`;
-
-  var shoppingHeaderAccessories = document.createElement("a");
-  shoppingHeaderAccessories.classList.add("shoppingHeaderCommon");
-  shoppingHeaderAccessories.href = "#accessHeading"; 
-  shoppingHeaderAccessories.innerHTML = `ACCESSORIES`;
-
-  shoppingHeader.append(shoppingHeaderClothing, shoppingHeaderAccessories);
-
-
-  
-  /* Header Search Starts */
-  var searchTeam = document.createElement("div");
-  searchTeam.classList.add("search-container");
-  
-  var write = document.createElement("input");
-  write.type="search";
-  write.placeholder="Search for Clothing and Accessories";
-  write.name="searchItem";
-  write.id = "searchItem";
-  /* Header Search Ends */
-
-  var cartParent = document.createElement("a");
-  cartParent.href = "#";
-  cartParent.id = "cartParent";
-  var cartIcon = document.createElement("i");
-  cartIcon.classList.add("fa");
-  cartIcon.classList.add("fa-shopping-cart");
-  cartIcon.classList.add("badge");
-  cartIcon.id = "cartIcon";
-  cartParent.append(cartIcon);
-  
-  var profileIcon = document.createElement("i");
-  profileIcon.classList.add("fa-solid");
-  profileIcon.classList.add("fa-user");
-  profileIcon.id = "profileIcon";
-
-
-  head.append(compName, shoppingHeader, write, cartParent, profileIcon);
-
-  /* Cart quantity */
-  // var totalQty = 0;   -> declared above
-  const elementVar = document.getElementsByClassName("badge");
-  let index = 0;
-  while (index < elementVar.length) {
-  elementVar[index].setAttribute("value", totalQty);
-  index++;
-  } 
-  /*Cart quantity Ends*/
-
-   /* Header Ends*/
-
-   /*Footer Starts */
+      /*Footer Starts */
      
       var foot = document.getElementById("baseFooter");
       
@@ -295,64 +295,67 @@ localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the
        foot.append(fourthCol);
        /* Fourth Column Ends */
    
-   /*Footer Ends */
+       /*Footer Ends */
+
+       /*Adding Functionality*/
+       const searchInput = document.getElementById('searchItem');
    
 
-   
-   const searchInput = document.getElementById('searchItem');
-   
-
-  // const cardsSearch = document.getElementById('clothingSection');
-  
-   
-   const cardsItem = document.getElementsByClassName('card');
-   
-   
-
-   
-   /* setTimeout(function() {
-      for (let i = 0; i < cardsItem.length; i++) {
-        const item = cardsItem[i];
-      console.log(item.innerText.toLowerCase());
-    }
-  }, 3000); */
-    
-   
-
-   // const storedData = localStorage.getItem('apiData');  // getting JSON from localstorage
-   // const jsonData = JSON.parse(storedData); // convert the string back to a JavaScript object
-   // console.log(jsonData);
-
-  // let len = jsonData.length;   //length of JSON Object
-
-    
-     searchInput.addEventListener('input', function(event) {
-      const searchValue = event.target.value.toLowerCase();
-      console.log(searchValue);
-      // if(event.keyCode === 13){
+       // const cardsSearch = document.getElementById('clothingSection');
        
+        
+        const cardsItem = document.getElementsByClassName('card');
+        
+        
+     
+     
+         
+          searchInput.addEventListener('input', function(event) {
+           const searchValue = event.target.value.toLowerCase();
+           console.log(searchValue);
+           // if(event.keyCode === 13){
+            
+        
+          // Loop through all items and hide/show based on search value
+          for (let i = 0; i < cardsItem.length; i++) {
+            const item = cardsItem[i];
+            const itemValue = item.innerText.toLowerCase();
+           
+     
+            if (itemValue.includes(searchValue)) {
+               item.style.display = 'inline-block';
+             // continue;
+            } else {
+               item.style.display = 'none';
+              // item.classList.add("hideItem");
+            }
+          }
+        }); 
+        /*Adding Functionality Ends*/
+
+    }   //try Ends
+  catch(error) {
+    // Handle any errors here
+    console.error(error);
+  };
+}
+  
+getData();  // function calling the API 
+
+});    // End of DOMContentLoaded Event Listener
+
+
+
+
+
+
    
-        setTimeout(function() {
-     // Loop through all items and hide/show based on search value
-     for (let i = 0; i < cardsItem.length; i++) {
-       const item = cardsItem[i];
-       const itemValue = item.innerText.toLowerCase();
-      
+   
 
-       if (itemValue.includes(searchValue)) {
-          item.style.display = 'inline-block';
-        // continue;
-       } else {
-          item.style.display = 'none';
-         // item.classList.add("hideItem");
-       }
-     }
-    }, 1000);
-    // }
-   }); 
+   
+ 
    
 
 
-  });  // End of DOMContentLoaded Event Listener
 
   
