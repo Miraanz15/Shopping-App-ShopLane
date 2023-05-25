@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     var cartParent = document.createElement("a");
-    cartParent.href = "#";
+    cartParent.href = "http://127.0.0.1:5500/checkOut.html";
     cartParent.id = "cartParent";
     var cartIcon = document.createElement("i");
     cartIcon.classList.add("fa");
