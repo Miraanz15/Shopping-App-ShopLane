@@ -325,22 +325,28 @@ document.addEventListener("DOMContentLoaded", function(){
     
     function onAddButtonClick() {
      // Code to execute when the button is clicked
-     var arrayStr = localStorage.getItem('shopLaneAppDataUpdated');
+     var arrayStr = localStorage.getItem('shopLaneAppData');
      var arrayObj = JSON.parse(arrayStr);
-     
+     const key = 'quantity';
     // arrayObj.forEach(function(obj) {
-     for (var i = 0; i < arrayObj.length; i++) {    
+     for (var i = 0; i < arrayObj.length; i++) { 
        // Add new key-value pair to each object
        if(arrayObj[i].id == value){
-          let val = arrayObj[i].quantity;
-          val = parseInt(val);
-          val += 1;
-          arrayObj[i].quantity = `${val}`;
-          break;
+          if(arrayObj[i].hasOwnProperty(key)){
+               let val = arrayObj[i].quantity;
+               val = parseInt(val);
+               val += 1;
+               arrayObj[i].quantity = `${val}`;
+               break;
+          }
+          else{
+               arrayObj[i].quantity = '1';
+          }
+          
        }
      }
      var updatedArrayItems = JSON.stringify(arrayObj);
-     localStorage.setItem('shopLaneAppDataUpdated', updatedArrayItems);   //storing the updated JSON back to local storage 
+     localStorage.setItem('shopLaneAppData', updatedArrayItems);   //storing the updated JSON back to local storage 
 
      /*Updating Cart Quantity in Local Storage */
      totalQty += 1;

@@ -90,6 +90,35 @@ document.addEventListener("DOMContentLoaded", function(){
      /*Cart quantity Ends*/
  
    /* Header Ends*/
+
+
+   let itemsFromLocal = localStorage.getItem('shopLaneAppData');
+   let itemsFromLocalParsed = JSON.parse(itemsFromLocal);
+
+
+   var totalItem = document.getElementById("totalItem");
+   totalItem.innerHTML = "Total Items: " + totalQty;
+
+
+
+   var items = document.getElementById("items");
+
+   var leftContainer = document.createElement("div");
+   leftContainer.classList.add("left");
+
+   for (var i = 0; i < itemsFromLocalParsed.length; i++) {
+    var product = itemsFromLocalParsed[i];
+    if(product.hasOwnProperty('quantity') && product.quantity > 0){
+        console.log("Quantity = " + product.quantity);
+        
+    }
+   }
+
+
+
+
+
+
  
   //    
   //     /*Body Starts */

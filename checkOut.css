@@ -107,6 +107,15 @@ html{
   }
   /* Header Ends */
   
+
+
+  #totalItem{
+    margin-top: 5vh;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 5vw;
+    font-size: 30px;
+    font-weight: bolder;
+  }
   
   /* Footer  Starts */
   #baseFooter{

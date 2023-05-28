@@ -21,23 +21,36 @@ document.addEventListener("DOMContentLoaded", function(){
     /*API Call Ends*/
 
        // storing JSON data in local storage
-       const jsonData = JSON.stringify(data);   // convert JSON data to a string
-       localStorage.setItem('shopLaneAppData', jsonData);   // store the string in local storage
-       console.log("API Data stored in Local Storage");
 
-       /* Adding extra key-value pair for quantity of each item added to cart */
-       var arrayStr = localStorage.getItem('shopLaneAppData');
-       var arrayObj = JSON.parse(arrayStr);
+       const key = 'shopLaneAppData';
+
+       if (!localStorage.getItem(key)) {
+          const jsonData = JSON.stringify(data);   // convert JSON data to a string
+          localStorage.setItem('shopLaneAppData', jsonData);   // store the string in local storage
+          console.log("API Data stored in Local Storage");
+       } 
+
+
+
+
+      /* Adding extra key-value pair for quantity of each item added to cart */
+      // var arrayStr = localStorage.getItem('shopLaneAppData');
+      // var arrayObj = JSON.parse(arrayStr);
        
-       arrayObj.forEach(function(obj) {
-         // Add new key-value pair to each object
-         obj.quantity = '0';
-       });
-       
-       var updatedArrayStr = JSON.stringify(arrayObj);
-       localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the updated JSON back to local storage
+      // arrayObj.forEach(function(obj) {
+      //   // Add new key-value pair to each object
+      //   obj.quantity = '0';
+      // });
+      // 
+      // var updatedArrayStr = JSON.stringify(arrayObj);
+      // localStorage.setItem('shopLaneAppDataUpdated', updatedArrayStr);   //storing the updated JSON back to local storage
        
        /* Adding extra key-value pair for quantity of each item added to cart Ends*/
+
+
+
+
+
 
         /* Header starts*/
         var head = document.getElementById("head");
