@@ -105,14 +105,56 @@ document.addEventListener("DOMContentLoaded", function(){
 
    var leftContainer = document.createElement("div");
    leftContainer.classList.add("left");
+   var finalAmount = 0;
 
    for (var i = 0; i < itemsFromLocalParsed.length; i++) {
     var product = itemsFromLocalParsed[i];
     if(product.hasOwnProperty('quantity') && product.quantity > 0){
-        console.log("Quantity = " + product.quantity);
+        var card = document.createElement("div");
+        card.classList.add("card");
+
+        var cardImage = document.createElement("img");
+        cardImage.classList.add("cardImage");
+        cardImage.src = product.preview;
+
+        var cardRight = document.createElement("div");
+        cardRight.classList.add("cardRight");
+        var productName = document.createElement("h1");
+           productName.innerText = product.name;
+           productName.classList.add("productName");
+        var productQuantity = document.createElement("h3");
+           productQuantity.innerText = "x " + product.quantity;
+           productQuantity.classList.add("productQuantity"); 
+        var productAmount = document.createElement("h2");
+            productAmount.innerText = "Amount: Rs. " + (product.quantity * product.price);
+            finalAmount += product.quantity * product.price;
+            productAmount.classList.add("productAmount");  
+        cardRight.append(productName, productQuantity, productAmount);
+
+        card.append(cardImage, cardRight);
+
+        leftContainer.append(card);
         
     }
    }
+   var rightContainer = document.createElement("div");
+   rightContainer.classList.add("right");
+
+   var totalHeading = document.createElement("h1");
+        totalHeading.innerText = "Total Amount";
+        totalHeading.id = "totalHeading";
+
+   var totalAmount = document.createElement("h1");
+        totalAmount.innerText = "Amount Rs. " + finalAmount;
+        totalAmount.id = "totalAmount";
+
+   var addButton = document.createElement("button");
+           addButton.innerText = "Place Order";
+           addButton.id = "addButton";
+
+   rightContainer.append(totalHeading, totalAmount, addButton);       
+
+   items.append(leftContainer, rightContainer);
 
 
 
