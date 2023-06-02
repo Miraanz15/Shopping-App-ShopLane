@@ -145,14 +145,18 @@ document.addEventListener("DOMContentLoaded", function(){
         totalHeading.id = "totalHeading";
 
    var totalAmount = document.createElement("h1");
-        totalAmount.innerText = "Amount Rs. " + finalAmount;
+        totalAmount.innerText = "Rs. " + finalAmount;
         totalAmount.id = "totalAmount";
 
+   var addButtonLink = document.createElement("a");   
+   addButtonLink.href = "#";
+   addButtonLink.id = "addButtonLink";
    var addButton = document.createElement("button");
            addButton.innerText = "Place Order";
            addButton.id = "addButton";
+    addButtonLink.append(addButton);       
 
-   rightContainer.append(totalHeading, totalAmount, addButton);       
+   rightContainer.append(totalHeading, totalAmount, addButtonLink);       
 
    items.append(leftContainer, rightContainer);
 
