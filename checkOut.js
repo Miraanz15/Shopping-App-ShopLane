@@ -193,22 +193,22 @@ document.addEventListener("DOMContentLoaded", function(){
         var firstColA = document.createElement("a");
         firstColA.classList.add("footerTopics");
         firstColA.innerHTML = `MEN CLOTHING`;
-        firstColA.href = "#clothesHeading";
+        firstColA.href = "http://127.0.0.1:5500/";
  
         var firstColB = document.createElement("a");
         firstColB.classList.add("footerTopics");
         firstColB.innerHTML = `WOMEN CLOTHING`;
-        firstColB.href = "#clothesHeading";
+        firstColB.href = "http://127.0.0.1:5500/";
  
         var firstColC = document.createElement("a");
         firstColC.classList.add("footerTopics");
         firstColC.innerText = `MEN ACCESSORIES`;
-        firstColC.href = "#accessHeading";
+        firstColC.href = "http://127.0.0.1:5500/";
  
         var firstColD = document.createElement("a");
         firstColD.classList.add("footerTopics");
         firstColD.innerText = `WOMEN ACCESSORIES`;
-        firstColD.href = "#accessHeading";
+        firstColD.href = "http://127.0.0.1:5500/";
  
         firstCol.append(firstColHeading, firstColA, firstColB, firstColC, firstColD);
  
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function(){
          var secondColA = document.createElement("a");
          secondColA.classList.add("footerTopics");
          secondColA.innerHTML = `HOME`;
-         secondColA.href = "#";
+         secondColA.href = "http://127.0.0.1:5500/";
  
          var secondColB = document.createElement("a");
          secondColB.classList.add("footerTopics");
