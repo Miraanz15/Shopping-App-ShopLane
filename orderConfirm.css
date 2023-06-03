@@ -235,7 +235,23 @@ html{
   /* Header Ends */
 
   /* Body Starts */
- 
+  #pageBody{
+    margin-top: 50vh;
+    margin-bottom: 5vh;
+  } 
+  #tickMark{
+    width: 40vw;
+    height: 40vh;
+    margin-left: 28vw;
+  }
+  #ordered{
+    margin-left: 15vw;
+    margin-bottom: 2vh;
+  }
+  #orderMail{
+    margin-left: 7vw;
+    font-size: 15px;
+  }
 
   /* Body Ends */
   
@@ -250,7 +266,7 @@ html{
     justify-content: space-between;
     padding-left: 10vw;
     padding-right: 10vw;
-    margin-top: 20vh;
+    margin-top: 10vh;
   }
   .footerColumns{
     display: flex;
