@@ -91,163 +91,32 @@ document.addEventListener("DOMContentLoaded", function(){
  
    /* Header Ends*/
 
+  /*Body Starts*/
+      var pageBody = document.getElementById("pageBody");
+      
+      var tick = document.createElement("div");
+      tick.id = "tick";
 
-   let itemsFromLocal = localStorage.getItem('shopLaneAppData');
-   let itemsFromLocalParsed = JSON.parse(itemsFromLocal);
+      var tickMark = document.createElement("img");
+      tickMark.id = "tickMark";
+      tickMark.src = src="tickMark.jpg";
+      tickMark.alt = "tickMark";
 
+      tick.append(tickMark);
 
-   var totalItem = document.getElementById("totalItem");
-   totalItem.innerHTML = "Total Items: " + totalQty;
+      var ordered = document.createElement("div");
+      ordered.id = "ordered";
+      ordered.innerText = "Order Placed Successfully!!";
 
+      var orderMail = document.createElement("div");
+      orderMail.id = "orderMail";
+      orderMail.innerText = "We have sent you an email with the order details";
 
-
-   var items = document.getElementById("items");
-
-   var leftContainer = document.createElement("div");
-   leftContainer.classList.add("left");
-   var finalAmount = 0;
-
-   for (var i = 0; i < itemsFromLocalParsed.length; i++) {
-    var product = itemsFromLocalParsed[i];
-    if(product.hasOwnProperty('quantity') && product.quantity > 0){
-        var card = document.createElement("div");
-        card.classList.add("card");
-
-        var cardImage = document.createElement("img");
-        cardImage.classList.add("cardImage");
-        cardImage.src = product.preview;
-
-        var cardRight = document.createElement("div");
-        cardRight.classList.add("cardRight");
-        var productName = document.createElement("h1");
-           productName.innerText = product.name;
-           productName.classList.add("productName");
-        var productQuantity = document.createElement("h3");
-           productQuantity.innerText = "x " + product.quantity;
-           productQuantity.classList.add("productQuantity"); 
-        var productAmount = document.createElement("h2");
-            productAmount.innerText = "Amount: Rs. " + (product.quantity * product.price);
-            finalAmount += product.quantity * product.price;
-            productAmount.classList.add("productAmount");  
-        cardRight.append(productName, productQuantity, productAmount);
-
-        card.append(cardImage, cardRight);
-
-        leftContainer.append(card);
-        
-    }
-   }
-   var rightContainer = document.createElement("div");
-   rightContainer.classList.add("right");
-
-   var totalHeading = document.createElement("h1");
-        totalHeading.innerText = "Total Amount";
-        totalHeading.id = "totalHeading";
-
-   var totalAmount = document.createElement("h1");
-        totalAmount.innerText = "Rs. " + finalAmount;
-        totalAmount.id = "totalAmount";
-
-   var addButtonLink = document.createElement("a");   
-   addButtonLink.href = "http://127.0.0.1:5500/orderConfirm.html";
-   addButtonLink.id = "addButtonLink";
-   var addButton = document.createElement("button");
-           addButton.innerText = "Place Order";
-           addButton.id = "addButton";
-    addButtonLink.append(addButton);       
-
-   rightContainer.append(totalHeading, totalAmount, addButtonLink);       
-
-   items.append(leftContainer, rightContainer);
+      pageBody.append(tick, ordered, orderMail);
+  /*Body Ends */
 
 
 
-
-
-
- 
-  //    
-  //     /*Body Starts */
-  //      var container = document.getElementById("container"); 
- //
-  //      for (var i = 0; i < data.length; i++) {
-  //        var productData = data[i];
-  //      if(productData.id === value){
-  //      var leftContainer = document.createElement("div");
-  //      leftContainer.classList.add("left");
-  //     var imgLeftContainer = document.createElement("img");
-  //      imgLeftContainer.classList.add("leftImage");
-  //      imgLeftContainer.src = productData.preview;
-  //     leftContainer.append(imgLeftContainer);
- //
- //
-  //     var rightContainer = document.createElement("div");
-  //        rightContainer.classList.add("right");
- //
- //
-  //     var productName = document.createElement("h1");
-  //          productName.innerText = productData.name;
-  //          productName.classList.add("name");
-  //     var productBrand = document.createElement("h3");
-  //          productBrand.innerText = productData.brand;
-  //          productBrand.classList.add("brand"); 
- //
-  //     var priceDiv = document.createElement("div");
-  //         priceDiv.classList.add("priceDiv");  
-  //     var productPrice = document.createElement("h3");
-  //          productPrice.innerText = "Price: Rs ";
-  //          productPrice.classList.add("priceRs");    
-  //     var priceAmount = document.createElement("h3");   
-  //         priceAmount.innerText = productData.price; 
-  //         priceAmount.classList.add("priceAmount");
-  //     priceDiv.append(productPrice, priceAmount)
- //
-  //     var productDescriptionHeading = document.createElement("h3");
-  //          productDescriptionHeading.innerText = "Description";
-  //          productDescriptionHeading.classList.add("descriptionHeading");
-  //     var productDescription = document.createElement("h4");
-  //          productDescription.innerText = productData.description;
-  //          productDescription.classList.add("description");
-  //     var productPreviewHeading = document.createElement("h3");
-  //          productPreviewHeading.innerText = "Product Preview";
- //
-  //     function onImgClick(e) {
-  //       imgLeftContainer.src = e.target.src;
-  //       var activeElement = document.getElementsByClassName("active");
-  //       activeElement[0].classList.remove("active");
-  //       e.target.classList.add("active");
-  //       }
- //
-  //     var imgsContainer = document.createElement("div");   
-  //         imgsContainer.classList.add("imgsContainer"); 
-  //     for (var i = 0; i < productData.photos.length; i++) {
-  //          var img = document.createElement("img");
-  //          img.src = productData.photos[i];
-  //          img.classList.add("image"); 
-  //          img.id = i;
-  //          if(i == 0){
-  //           img.classList.add("active");
-  //          }
-  //          img.addEventListener('click', onImgClick);
-  //          imgsContainer.append(img);
-  //        }
- //
-  //     var addButton = document.createElement("button");
-  //          addButton.innerText = "Add to Cart";
-  //          addButton.id = "addButton";
- //
- //
- //
- //
-  //     rightContainer.append(productName, productBrand, priceDiv, productDescriptionHeading, productDescription, productPreviewHeading, imgsContainer, addButton);
- //
- //
- //
-  //      container.append(leftContainer, rightContainer);
-  //      break;
-  //    }
-  //    }
-  //    /*Body Ends */
  
       
         /*Footer Starts */
@@ -391,58 +260,6 @@ document.addEventListener("DOMContentLoaded", function(){
  
  
       
-     
-     // /*Functionality Starts*/
- // 
-     // 
-     // /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage */
-     //   
-     // let addBtn = document.getElementById('addButton');
-    // 
-     // 
-     // function onAddButtonClick() {
-     //  // Code to execute when the button is clicked
-     //  var arrayStr = localStorage.getItem('shopLaneAppDataUpdated');
-     //  var arrayObj = JSON.parse(arrayStr);
-     //  
-     // // arrayObj.forEach(function(obj) {
-     //  for (var i = 0; i < arrayObj.length; i++) {    
-     //    // Add new key-value pair to each object
-     //    if(arrayObj[i].id == value){
-     //       let val = arrayObj[i].quantity;
-     //       val = parseInt(val);
-     //       val += 1;
-     //       arrayObj[i].quantity = `${val}`;
-     //       break;
-     //    }
-     //  }
-     //  var updatedArrayItems = JSON.stringify(arrayObj);
-     //  localStorage.setItem('shopLaneAppDataUpdated', updatedArrayItems);   //storing the updated JSON back to local storage 
- // 
-     //  /*Updating Cart Quantity in Local Storage */
-     //  totalQty += 1;
-     //  cartObjFromLocalParsed.cart = totalQty;
-     //  var updatedArrayCart = JSON.stringify(cartObjFromLocalParsed);
-     //  localStorage.setItem('totalQty', updatedArrayCart);
-     //   /*Updating Cart Quantity in Local Storage Ends*/
- // 
-     //  /*Updating  Cart quantity on WebPage*/
-     // // var totalQty = 0;  -> declared above
-     // const elementVar = document.getElementsByClassName("badge");
-     // let index = 0;
-     // while (index < elementVar.length) {
-     // elementVar[index].setAttribute("value", totalQty);
-     // index++;
-     // } 
-     // /*Updating  Cart quantity on WebPage Ends*/
- // 
-     // };  //onAddButtonClick Ends
-     // addBtn.addEventListener('click', onAddButtonClick);  
- // 
-     // /* Adding event listener to Add button and updating Cart value and respective Item quantity in LocalStorage Ends*/
- // 
- // 
-     // /*Functionality Ends*/   
    
  
       }  // try ends
