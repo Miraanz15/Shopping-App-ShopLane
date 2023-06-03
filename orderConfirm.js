@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", function(){
     async function getData() {
       try {
  
-           const queryParams = new URLSearchParams(location.search);   //to get data from URL
-           const value = queryParams.get("value");              //Getting the id of card from Home Page
-      
            /* Getting cart quantity from local storage */
            let cartObjFromLocal = localStorage.getItem('totalQty');
            let cartObjFromLocalParsed = JSON.parse(cartObjFromLocal);
@@ -13,9 +10,19 @@ document.addEventListener("DOMContentLoaded", function(){
            totalQty = parseInt(totalQty);       //Total Cart Quantity
       
            /* Getting cart quantity from local storage Ends*/
-          
-           console.log("Item Id selected = " + value);
-           console.log("Total Cart Quantity at present = " + totalQty);
+
+           /*Setting Cart quantity in local storage to 0 Starts*/
+
+           totalQty = 0;
+           cartObjFromLocalParsed.cart = totalQty;
+           var updatedArrayCart = JSON.stringify(cartObjFromLocalParsed);
+           localStorage.setItem('totalQty', updatedArrayCart);
+           /*Setting Cart quantity in local storage to 0 Ends*/
+
+           /*Deleting local storage items list from local storage Starts*/
+           localStorage.removeItem('shopLaneAppData');
+           localStorage.removeItem('totalQty');
+           /*Deleting local storage items list from local storage Ends*/
            
       /* API Call */     
       const response = await fetch('https://5d76bf96515d1a0014085cf9.mockapi.io/product');
@@ -84,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function(){
      const elementVar = document.getElementsByClassName("badge");
      let index = 0;
      while (index < elementVar.length) {
-     elementVar[index].setAttribute("value", totalQty);
+     elementVar[index].setAttribute("value", 0);
      index++;
      } 
      /*Cart quantity Ends*/

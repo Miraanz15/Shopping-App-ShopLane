@@ -81,6 +81,7 @@ html{
   #cartParent{
   text-decoration: none;
   color: rgb(51,51,51);
+  cursor: auto;
   }
   #cartIcon{
   font-size: 25px;
@@ -111,23 +112,26 @@ html{
   /*Body Starts */
   #pageBody{
     font-family: 'Montserrat', sans-serif;
-    margin-top: 14vh;
-    margin-bottom: 0vh;
+    margin-top: 20vh;
+    margin-bottom: 12vh;
   } 
-  #tick{
-    
-  }
   #tickMark{
-    width: 15vw;
-    height: 25vh;
+    width: 20vw;
+    height: 35vh;
     margin-left: 40vw;
   }
   #ordered{
     margin-left: 40vw;
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(66, 66, 66);
+    margin-bottom: 2vh;
   }
   #orderMail{
-    margin-left: 40vw;
-    
+    margin-left: 37vw;
+    font-size: 15px;
+    font-weight:600;
+    color: rgb(122, 122, 122);
   }
 
 
@@ -143,7 +147,7 @@ html{
   justify-content: space-between;
   padding-left: 10vw;
   padding-right: 10vw;
-  margin-top: 5.6vh;
+  margin-top: 3.2vh;
   }
   .footerColumns{
   display: flex;
