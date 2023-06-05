@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
         /* Header Search Ends */
       
         var cartParent = document.createElement("a");
-        cartParent.href = "http://127.0.0.1:5500/checkOut.html";
+        cartParent.href = "checkOut.html";
         cartParent.id = "cartParent";
         var cartIcon = document.createElement("i");
         cartIcon.classList.add("fa");
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var product = data[i];
 
         var card = document.createElement("a");
-        card.href = "http://127.0.0.1:5500/productDetails.html?value="+ product.id;
+        card.href = "productDetails.html?value="+ product.id;
         card.classList.add("card");
         let varr = product.id;
         card.setAttribute('id', varr);
